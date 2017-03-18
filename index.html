@@ -8,16 +8,13 @@
 	<div class="container">
 		<div class="option-box">
 			<h1>Best Ice Cream </h1>
-			<form method="get" id="chooseZip">
-				<button type="submit" class="learnButton">Use current location</button>
-				<button type="button" id="searchZip" class="learnButton">Search by Zip Code</button>
-				<div class="clear"></div>
-				<div class="zipSearch">
-					<input id="textZip" type="text" name="zip" placeholder="enter your zip code" autofocus>
-					<button type="submit" class="learnButton">Search</button>
-				</div>
-				<div class="clear"></div>
-			</form>
+			<div>
+				<input type="text" placeholder="Search by zipcode">
+				<button type="button" data-bind="click: searchByZipCode">Search</button>
+				<ul class="lists" data-bind="foreach: lists">
+					<li></li>
+				</ul>
+			</div>
 		</div>
 		<div id="map"></div>
 
