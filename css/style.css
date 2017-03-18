@@ -17,3 +17,10 @@ body {
 	position: absolute;
 	right: 0px;
 }
+
+hr {
+    background: #D0D7D9;
+    height: 1px;
+    margin: 20px 0 20px 0;
+    border: none;
+}

@@ -5,10 +5,30 @@
     <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
-	<div id="container"></div>
-	<div id="map"></div>
+	<div class="container">
+		<div class="option-box">
+			<h1>Best Ice Cream </h1>
+			<form method="get" id="chooseZip">
+				<button type="submit" class="learnButton">Use current location</button>
+				<button type="button" id="searchZip" class="learnButton">Search by Zip Code</button>
+				<div class="clear"></div>
+				<div class="zipSearch">
+					<input id="textZip" type="text" name="zip" placeholder="enter your zip code" autofocus>
+					<button type="submit" class="learnButton">Search</button>
+				</div>
+				<div class="clear"></div>
+			</form>
+		</div>
+		<div id="map"></div>
+
+	</div>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+	<script src="js/knockout-3.4.2.js"></script>
+	<script src="js/map.js"></script>
 	<script src="js/script.js"></script>
 	<script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBnXUYT2HmjO5jvJAHPk84_uj8dvNUVHXY&v=3&callback=initMap">
+        src="https://maps.googleapis.com/maps/api/js?libraries=places,geometry,drawing&key=AIzaSyBnXUYT2HmjO5jvJAHPk84_uj8dvNUVHXY&v=3&callback=initMap">
     </script>
 </body>
