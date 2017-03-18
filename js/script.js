@@ -79,7 +79,12 @@ var Venue = function(data){
 
 function ViewModel() {
 	var self = this;
+	self.list = ko.observableArray();
+	fourSquareCall(self.list);
+	//console.log(this.list());
 
-	
 }
+
+var vm = new ViewModel(); 
+ko.applyBindings (vm);
 
