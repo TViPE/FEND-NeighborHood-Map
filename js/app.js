@@ -14,22 +14,23 @@ function initMap() {
     var i;
     map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: 40.9256538, lng: -73.140943},
-        zoom: 12,
+        zoom: 10,
         mapTypeControl: false
     });
 
     infoWindow = new google.maps.InfoWindow();
     for(i = 0; i< vm.venueList().length; i++) {
-        var position = vm.venueList()[i].location;
+        //var position = vm.venueList()[i].location;
         //console.log(position);
-        var title = vm.venueList()[i].name;
+        //var title = vm.venueList()[i].name;
         //console.log(title);
-        var marker = new google.maps.Marker({
-            position: position,
-            map: map,
-            title: title,
-            animation: google.maps.Animation.DROP
-        });
+        var marker = vm.venueList()[i].marker;
+        // var marker = new google.maps.Marker({
+        //     position: vm.venueList()[i].marker,
+        //     map: map,
+        //     title: title,
+        //     animation: google.maps.Animation.DROP
+        // });
 
         markers.push(marker);
         marker.addListener('click', function() {
@@ -90,12 +91,31 @@ var Venue = function(data) {
 	self.lat = data.location.lat;
 	self.lng = data.location.lng;
 	self.location = {lat: self.lat, lng: self.lng};
+
+    //marker
+    self.marker = new google.maps.Marker({
+        position: self.location,
+        map: map,
+        title: self.name,
+        animation: google.maps.Animation.DROP
+    });    
+
+    // self.createMarker = ko.computed(function() {
+    //     if (vm.google()) {
+    //         return self.marker;
+    //     }
+    // });
 }
 
 var viewModel = function() {
 	var self = this;
+    //this.google = ko.observable(false);
 	self.venueList = ko.observableArray();
 	fourSquareAjaxRequest(self.venueList);
+
+    //create a marker object
+
+
 	//console.log(self.venueList());
 	//This search is the value from search input text
 	self.search = ko.observable(''); 
@@ -106,9 +126,9 @@ var viewModel = function() {
 	// 	var userInput = self.search().toLowerCase();
 	// 	for(var i = 0; i<self.venueList().length; i++) {
 	// 		if(self.venueList()[i].name.toLowerCase().indexOf(userInput) > -1) {
-	// 			//display the text 
+	// 			console.log("finding ...");
 	// 		} else {
-	// 			//display none
+	// 			console.log("none");
 	// 		}
 	// 	}
 	// });
