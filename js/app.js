@@ -1,14 +1,7 @@
 var map;
 var infoWindow = null;
 var markers = [];
-var locations = [
-    {title: "testing", location: {lat: 40.9256538, lng: -73.140943}}
-    // {title: , location: {lat: , lng: }},
-    // {title: , location: {lat: , lng: }},
-    // {title: , location: {lat: , lng: }},
-    // {title: , location: {lat: , lng: }},
-
-]
+var streetViewService;
 
 function initMap() {
     var i;
@@ -78,8 +71,8 @@ var Venue = function(data) {
 	var self =  this;
 	self.id = data.categories.id;
 	self.name = data.name;
-	self.formattedAddress = data.location.formattedAddress;
-	self.formattedPhone = data.contact.formattedPhone;
+	self.formattedAddress = data.location.formattedAddress || "No address provided";
+	self.formattedPhone = data.contact.formattedPhone || "No phone provided";
 	self.lat = data.location.lat;
 	self.lng = data.location.lng;
 	self.location = {lat: self.lat, lng: self.lng};
@@ -98,12 +91,37 @@ var Venue = function(data) {
     });
 
     self.populateInfoWindow = function() {
-        infoWindow.open(map, self.marker);
-        infoWindow.setContent('<div>' +
+        streetViewService = new google.maps.StreetViewService();
+        var radius = 50;
+        function getStreetView(data, status) {
+            if (status == google.maps.StreetViewStatus.OK) {
+                var nearStreetViewLocation = data.location.latLng;
+                var heading = google.maps.geometry.spherical.computeHeading(nearStreetViewLocation, self.marker.position);
+                infoWindow.setContent('<div>' +
+                                    '<h2>' + self.name + '</h2>' + 
+                                    '<h3>' + self.formattedAddress + '</h3>' +  
+                                    '<h3>' + self.formattedPhone + '</h3>' + 
+                                    '<div id="pano"></div>' +
+                                '</div>');
+                var panoramaOptions = {
+                    position: nearStreetViewLocation,
+                    pov: {
+                        heading: heading,
+                        pitch: 10
+                    }
+                };
+                var panorama = new google.maps.StreetViewPanorama(
+                    document.getElementById('pano'), panoramaOptions);
+            } else {
+                infoWindow.setContent('<div>' +
                                     '<h2>' + self.name + '</h2>' + 
                                     '<h3>' + self.formattedAddress + '</h3>' +  
                                     '<h3>' + self.formattedPhone + '</h3>' +    
                                 '</div>');
+            }
+        }
+        streetViewService.getPanoramaByLocation(self.marker.position, radius, getStreetView);
+        infoWindow.open(map, self.marker);
     };
 
     self.toggleBounce = function() {
