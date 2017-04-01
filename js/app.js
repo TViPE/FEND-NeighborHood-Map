@@ -39,7 +39,6 @@ function initMap() {
     }
 };
 
-
 /*
 This function populates the infoWindow when the marker is clicked.
 One infoWindow will open at the marker that is clicked, and populate
@@ -62,7 +61,8 @@ function fourSquareAjaxRequest (venueList) {
     var fs_version = "20170330";
     var fs_query = "restaurants";
     var fs_ll ="40.9256538, -73.140943";
-    var fs_url = "https://api.foursquare.com/v2/venues/search?ll=" + fs_ll + "&query=" + fs_query +"&client_id=" + fs_client_id + "&client_secret=" +fs_client_secret + "&v=" +fs_version;
+    var fs_limit = 20;
+    var fs_url = "https://api.foursquare.com/v2/venues/search?ll=" + fs_ll + "&query=" + fs_query + "&limit=" + fs_limit + "&client_id=" + fs_client_id + "&client_secret=" +fs_client_secret + "&v=" +fs_version;
     
     $.ajax({
         type: "GET",
@@ -115,7 +115,7 @@ var viewModel = function() {
 
 	
 }
-
-
 var vm = new viewModel();
 ko.applyBindings(vm);
+
+
