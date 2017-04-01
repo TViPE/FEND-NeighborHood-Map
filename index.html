@@ -1,31 +1,32 @@
+
+<!DOCTYPE html>
+<html>
 <head>
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Neighborhood Map</title>
-    <link href="css/style.css" rel="stylesheet">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Map Project</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
 	<div class="container">
 		<div class="option-box">
-			<h1>Best Ice Cream </h1>
-			<div>
-				<input type="text" placeholder="Search by zipcode">
-				<button type="button" data-bind="click: searchByZipCode">Search</button>
-				<ul class="lists" data-bind="foreach: lists">
-					<li></li>
-				</ul>
+			<h1>NeighborHood Map</h1>
+			<h2>Find the best places to eat</h2>
+			<div class="search">
+				<input type="text" name="search" placeholder="Filter Restaurant by keyword" autocomplete="off" data-bind="textInput: search">
 			</div>
+			<ul id="list" data-bind="foreach: venueList">
+				<li class="venueList" data-bind="text: name"></li>
+			</ul>
 		</div>
-		<div id="map"></div>
-
 	</div>
+	<div id="map"></div>
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-	<script src="js/knockout-3.4.2.js"></script>
-	<script src="js/map.js"></script>
-	<script src="js/script.js"></script>
-	<script async defer
-        src="https://maps.googleapis.com/maps/api/js?libraries=places,geometry,drawing&key=AIzaSyBnXUYT2HmjO5jvJAHPk84_uj8dvNUVHXY&v=3&callback=initMap">
-    </script>
+	<!-- JS -->
+	<script type='text/javascript' src='js/knockout-3.4.2.js'></script>
+	<script type="text/javascript" src='js/jquery-3.2.0.min.js'></script>
+	<script type="text/javascript" src='js/app.js'></script>
+	<script asyc defer type="text/javascript" 
+		src="https://maps.googleapis.com/maps/api/js?libraries=places,geometry,drawing&key=AIzaSyBnXUYT2HmjO5jvJAHPk84_uj8dvNUVHXY&v=3&callback=initMap"></script>
 </body>
+</html>
