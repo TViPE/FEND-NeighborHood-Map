@@ -12,6 +12,7 @@ function initMap() {
     });
 
     infoWindow = new google.maps.InfoWindow();
+    vm.google(true);
     for(i = 0; i< vm.venueList().length; i++) {
         var marker = vm.venueList()[i].marker;
         markers.push(marker);
@@ -77,13 +78,19 @@ var Venue = function(data) {
 	self.lng = data.location.lng;
 	self.location = {lat: self.lat, lng: self.lng};
 
-    //marker
-    self.marker = new google.maps.Marker({
-        position: self.location,
-        map: map,
-        title: self.name,
-        animation: google.maps.Animation.DROP
-    }); 
+    
+
+    self.createMarker = ko.computed(function () {
+        if (vm.google()) {
+            //marker
+            self.marker = new google.maps.Marker({
+                position: self.location,
+                map: map,
+                title: self.name,
+                animation: google.maps.Animation.DROP
+            }); 
+        }
+    });
 
     self.marker.addListener('click', function() {
         self.populateInfoWindow();
@@ -139,7 +146,7 @@ var Venue = function(data) {
 
 var viewModel = function() {
 	var self = this;
-    //this.google = ko.observable(false);
+    this.google = ko.observable(false);
 	self.venueList = ko.observableArray();
 	fourSquareAjaxRequest(self.venueList);
 
