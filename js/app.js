@@ -94,6 +94,7 @@ var Venue = function(data) {
 
     self.marker.addListener('click', function() {
         self.populateInfoWindow();
+        self.toggleBounce();
     });
 
     self.populateInfoWindow = function() {
@@ -103,6 +104,17 @@ var Venue = function(data) {
                                     '<h3>' + self.formattedAddress + '</h3>' +  
                                     '<h3>' + self.formattedPhone + '</h3>' +    
                                 '</div>');
+    };
+
+    self.toggleBounce = function() {
+        if (self.marker.getAnimation() !== null) {
+            self.marker.setAnimation(null);
+        } else {
+            self.marker.setAnimation(google.maps.Animation.BOUNCE);
+            setTimeout(function () {
+                self.marker.setAnimation(null)
+            }, 2000);
+        }
     }
 
 }
