@@ -20,40 +20,16 @@ function initMap() {
 
     infoWindow = new google.maps.InfoWindow();
     for(i = 0; i< vm.venueList().length; i++) {
-        //var position = vm.venueList()[i].location;
-        //console.log(position);
-        //var title = vm.venueList()[i].name;
-        //console.log(title);
         var marker = vm.venueList()[i].marker;
-        // var marker = new google.maps.Marker({
-        //     position: vm.venueList()[i].marker,
-        //     map: map,
-        //     title: title,
-        //     animation: google.maps.Animation.DROP
-        // });
-
         markers.push(marker);
         marker.addListener('click', function() {
-            populateInfoWindow(this, infoWindow);
-            toggleBounce(this, marker);
+            vm.venueList()[i].populateInfoWindow();
+            //populateInfoWindow(this, infoWindow);
+            //toggleBounce(this, marker);
         });
     }
 };
 
-/*
-This function populates the infoWindow when the marker is clicked.
-One infoWindow will open at the marker that is clicked, and populate
-based on that markers position
-*/
-function populateInfoWindow(marker, infoWindow) {
-    if(infoWindow.marker !== marker) {
-        infoWindow.setContent('...loading...');
-        infoWindow.marker = marker;
-        infoWindow.addListener('closeclick', function() {
-            infoWindow.marker = null;
-        });
-    };
-};
 
 function fourSquareAjaxRequest (venueList) {
 	//Foursquare Ajax request
@@ -82,6 +58,22 @@ function fourSquareAjaxRequest (venueList) {
         console.log("errorThrown: " + errorThrown);
     });
 }
+
+/*
+This function populates the infoWindow when the marker is clicked.
+One infoWindow will open at the marker that is clicked, and populate
+based on that markers position
+*/
+// function populateInfoWindow(marker, infoWindow) {
+//     if(infoWindow.marker !== marker) {
+//         infoWindow.setContent('...loading...');
+//         infoWindow.marker = marker;
+//         infoWindow.addListener('closeclick', function() {
+//             infoWindow.marker = null;
+//         });
+//     };
+// };
+
 var Venue = function(data) {
 	var self =  this;
 	self.id = data.categories.id;
@@ -98,13 +90,21 @@ var Venue = function(data) {
         map: map,
         title: self.name,
         animation: google.maps.Animation.DROP
-    });    
+    }); 
 
-    // self.createMarker = ko.computed(function() {
-    //     if (vm.google()) {
-    //         return self.marker;
-    //     }
-    // });
+    self.marker.addListener('click', function() {
+        self.populateInfoWindow();
+    });
+
+    self.populateInfoWindow = function() {
+        infoWindow.open(map, self.marker);
+        infoWindow.setContent('<div>' +
+                                    '<h2>' + self.name + '</h2>' + 
+                                    '<h3>' + self.formattedAddress + '</h3>' +  
+                                    '<h3>' + self.formattedPhone + '</h3>' +    
+                                '</div>');
+    }
+
 }
 
 var viewModel = function() {
@@ -113,10 +113,6 @@ var viewModel = function() {
 	self.venueList = ko.observableArray();
 	fourSquareAjaxRequest(self.venueList);
 
-    //create a marker object
-
-
-	//console.log(self.venueList());
 	//This search is the value from search input text
 	self.search = ko.observable(''); 
 
