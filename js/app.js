@@ -4,24 +4,18 @@ var markers = [];
 var streetViewService;
 
 function initMap() {
-    var i;
     map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: 40.9256538, lng: -73.140943},
-        zoom: 10,
+        zoom: 11,
         mapTypeControl: false
     });
 
     infoWindow = new google.maps.InfoWindow();
+    
+    // The purpose of setting vm.google(true) is to make sure that the code
+    // which creates the markers run only after the Google Maps API has 
+    // finished loading.
     vm.google(true);
-    for(i = 0; i< vm.venueList().length; i++) {
-        var marker = vm.venueList()[i].marker;
-        markers.push(marker);
-        marker.addListener('click', function() {
-            vm.venueList()[i].populateInfoWindow();
-            //populateInfoWindow(this, infoWindow);
-            //toggleBounce(this, marker);
-        });
-    }
 };
 
 
@@ -30,7 +24,7 @@ function fourSquareAjaxRequest (venueList) {
     var fs_client_id = "40OSONYGX0HSIKFX530MESYRMG3R3KBW4XX2A4LQFPDKK1QU";
     var fs_client_secret = "G1NAFV1GFPB1ZGHUYU5WSMK4TXQ2IA2I1SBERUWMQHTV2R1Z";
     var fs_version = "20170330";
-    var fs_query = "restaurants";
+    var fs_query = "nailsalon";
     var fs_ll ="40.9256538, -73.140943";
     var fs_limit = 20;
     var fs_url = "https://api.foursquare.com/v2/venues/search?ll=" + fs_ll + "&query=" + fs_query + "&limit=" + fs_limit + "&client_id=" + fs_client_id + "&client_secret=" +fs_client_secret + "&v=" +fs_version;
@@ -53,20 +47,6 @@ function fourSquareAjaxRequest (venueList) {
     });
 }
 
-/*
-This function populates the infoWindow when the marker is clicked.
-One infoWindow will open at the marker that is clicked, and populate
-based on that markers position
-*/
-// function populateInfoWindow(marker, infoWindow) {
-//     if(infoWindow.marker !== marker) {
-//         infoWindow.setContent('...loading...');
-//         infoWindow.marker = marker;
-//         infoWindow.addListener('closeclick', function() {
-//             infoWindow.marker = null;
-//         });
-//     };
-// };
 
 var Venue = function(data) {
 	var self =  this;
@@ -79,7 +59,6 @@ var Venue = function(data) {
 	self.location = {lat: self.lat, lng: self.lng};
 
     
-
     self.createMarker = ko.computed(function () {
         if (vm.google()) {
             //marker
@@ -155,16 +134,20 @@ var viewModel = function() {
 
 
 	// //search text filter function
-	// self.searchText = ko.computed(function () {
-	// 	var userInput = self.search().toLowerCase();
-	// 	for(var i = 0; i<self.venueList().length; i++) {
-	// 		if(self.venueList()[i].name.toLowerCase().indexOf(userInput) > -1) {
-	// 			console.log("finding ...");
-	// 		} else {
-	// 			console.log("none");
-	// 		}
-	// 	}
-	// });
+	self.searchText = ko.computed(function () {
+		var userInput = self.search().toLowerCase();
+		for(var i = 0; i<self.venueList().length; i++) {
+			if(self.venueList()[i].name.toLowerCase().indexOf(userInput) > -1) {
+				// show places matching with search text
+                //self.venueList()[i].style.display = "";
+                self.venueList()[i].marker.setVisible(true);
+			} else {
+				// hide places
+                //self.venueList()[i].style.display = "none";
+                self.venueList()[i].marker.setVisible(false);
+			}
+		}
+	});
 
 	
 }
