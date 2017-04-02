@@ -57,6 +57,8 @@ var Venue = function(data) {
 	self.lat = data.location.lat;
 	self.lng = data.location.lng;
 	self.location = {lat: self.lat, lng: self.lng};
+    // self.show is the boolean value to display/hide places on sidebar
+    self.show = ko.observable(true);
 
     
     self.createMarker = ko.computed(function () {
@@ -136,14 +138,15 @@ var viewModel = function() {
 	// //search text filter function
 	self.searchText = ko.computed(function () {
 		var userInput = self.search().toLowerCase();
+
 		for(var i = 0; i<self.venueList().length; i++) {
 			if(self.venueList()[i].name.toLowerCase().indexOf(userInput) > -1) {
 				// show places matching with search text
-                //self.venueList()[i].style.display = "";
+                self.venueList()[i].show(true);
                 self.venueList()[i].marker.setVisible(true);
 			} else {
 				// hide places
-                //self.venueList()[i].style.display = "none";
+                self.venueList()[i].show(false);
                 self.venueList()[i].marker.setVisible(false);
 			}
 		}
