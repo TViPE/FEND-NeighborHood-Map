@@ -16,7 +16,7 @@
 				<input type="text" name="search" placeholder="Filter Nail Salons by keyword" autocomplete="off" data-bind="textInput: search">
 			</div>
 			<ul id="list" data-bind="foreach: venueList">
-				<li class="venueList" data-bind="text: name, visible: show"></li>
+				<li class="venueList" data-bind="text: name, visible: show, click: $parent.selectVenue"></li>
 			</ul>
 		</div>
 	</div>

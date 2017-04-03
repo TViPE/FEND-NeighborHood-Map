@@ -47,7 +47,6 @@ function fourSquareAjaxRequest (venueList) {
     });
 }
 
-
 var Venue = function(data) {
 	var self =  this;
 	self.id = data.categories.id;
@@ -59,7 +58,6 @@ var Venue = function(data) {
 	self.location = {lat: self.lat, lng: self.lng};
     // self.show is the boolean value to display/hide places on sidebar
     self.show = ko.observable(true);
-
     
     self.createMarker = ko.computed(function () {
         if (vm.google()) {
@@ -122,11 +120,12 @@ var Venue = function(data) {
             }, 2000);
         }
     }
-
-}
+};
 
 var viewModel = function() {
 	var self = this;
+    // this.google is the observable google that is used as a flag to make sure
+    // the Google Maps API has done loading before performing ajax request.
     this.google = ko.observable(false);
 	self.venueList = ko.observableArray();
 	fourSquareAjaxRequest(self.venueList);
@@ -135,10 +134,9 @@ var viewModel = function() {
 	self.search = ko.observable(''); 
 
 
-	// //search text filter function
+	// search text filter function
 	self.searchText = ko.computed(function () {
 		var userInput = self.search().toLowerCase();
-
 		for(var i = 0; i<self.venueList().length; i++) {
 			if(self.venueList()[i].name.toLowerCase().indexOf(userInput) > -1) {
 				// show places matching with search text
@@ -152,8 +150,12 @@ var viewModel = function() {
 		}
 	});
 
-	
-}
+    //binding listview li with markers on map
+    self.selectVenue = function(venueList) {
+        google.maps.event.trigger(venueList.marker, 'click');
+    }
+};
+
 var vm = new viewModel();
 ko.applyBindings(vm);
 
