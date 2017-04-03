@@ -1,5 +1,5 @@
 body {
-	font-family: Arial, san-serif;
+	font-family: 'Lobster', cursive;
 	height: 100%;
 	margin: 0;
 	padding: 0;
@@ -8,7 +8,7 @@ body {
 #map {
 	bottom: 0px;
 	height: 100%;
-	left: 380px;
+	left: 375px;
 	position: absolute;
 	right: 0px;
 }
@@ -16,15 +16,13 @@ body {
 .container {
 	height: 100%;
 	position: relative;
+	
+	margin: 0 auto;
 }
 
 .option-box {
 	background: #fff;
-	border: 1px solid #999;
-	border-radius: 3px;
 	height: 100%;
-	line-height: 35px;
-	padding: 10px 10px 30px 10px;
 	width: 360px;
 }
 
@@ -32,3 +30,34 @@ body {
     width: 400px;
     height: 200px;
 }
+
+li {
+	list-style: none;
+	margin-left: -25px;
+	border-top: 1px solid black;
+	line-height: 35px;
+}
+
+li:hover {
+	background-color: #B2DFDB;
+}
+
+.search {
+	width: 350px;
+	margin: 0 auto;
+	margin-left: 10px;
+}
+
+input {
+	width: 340px;
+	height: 30px;
+}
+
+h1 {
+	margin-left: 10px;
+}
+
+h2 {
+	margin-left: 10px;
+}
+
