@@ -18,6 +18,12 @@ function initMap() {
     vm.google(true);
 };
 
+// Google Map Error Handler
+function gmError() {
+    var errorMessage = "<h1>There is an error with Google Map at this moment. Please try again later</h1>";
+    $('.option-box').append(errorMessage);
+}
+
 
 function fourSquareAjaxRequest (venueList) {
 	//Foursquare Ajax request
@@ -26,7 +32,7 @@ function fourSquareAjaxRequest (venueList) {
     var fs_version = "20170330";
     var fs_query = "nailsalon";
     var fs_ll ="40.9256538, -73.140943";
-    var fs_limit = 20;
+    var fs_limit = 14;
     var fs_url = "https://api.foursquare.com/v2/venues/search?ll=" + fs_ll + "&query=" + fs_query + "&limit=" + fs_limit + "&client_id=" + fs_client_id + "&client_secret=" +fs_client_secret + "&v=" +fs_version;
     
     $.ajax({
@@ -78,7 +84,7 @@ var Venue = function(data) {
 
     self.populateInfoWindow = function() {
         streetViewService = new google.maps.StreetViewService();
-        var radius = 50;
+        var radius = 100;
         function getStreetView(data, status) {
             if (status == google.maps.StreetViewStatus.OK) {
                 var nearStreetViewLocation = data.location.latLng;
