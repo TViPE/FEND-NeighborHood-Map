@@ -5,7 +5,7 @@ This is a single-page application featuring a map of a chosen neighborhood.
 The application functionality includes:
 - Map Markers to identify locations/places
 - A search function to easily discover these locations
-- A listview to support simple brwosing of all locations.
+- A listview to support simple browsing of all locations.
 
 The application is built with Knockout.js, Google Maps API, and Foursquare API.
 
