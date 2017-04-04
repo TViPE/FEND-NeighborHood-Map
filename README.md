@@ -2,12 +2,12 @@
 
 ## Overview
 This is a single-page application featuring a map of a chosen neighborhood.
-The application functionality include:
+The application functionality includes:
 - Map Markers to identify locations/places
 - A search function to easily discover these locations
 - A listview to support simple brwosing of all locations.
 
-The application is built with Knockout.js, Google Maps API, and Foursquare API
+The application is built with Knockout.js, Google Maps API, and Foursquare API.
 
 ## How to get started
 Experience the live demo application at https://tvipe.github.io/FEND-NeighborHood-Map/
@@ -19,7 +19,7 @@ To explore more about the code:
 4. Feel free to explore the html, cs, js files.
 
 
-## Application Functionalities
+## Application Functionality
 
 1. The application uses Google Maps API. to initlize the map of a chosen neighborhood.
 2. The application collects infomation data of the locations by performing ajax request from Foursquare API.
