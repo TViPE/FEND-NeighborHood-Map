@@ -32,7 +32,7 @@ function fourSquareAjaxRequest (venueList) {
     var fs_version = "20170330";
     var fs_query = "nailsalon";
     var fs_ll ="40.9256538, -73.140943";
-    var fs_limit = 14;
+    var fs_limit = 25;
     var fs_url = "https://api.foursquare.com/v2/venues/search?ll=" + fs_ll + "&query=" + fs_query + "&limit=" + fs_limit + "&client_id=" + fs_client_id + "&client_secret=" +fs_client_secret + "&v=" +fs_version;
     
     $.ajax({

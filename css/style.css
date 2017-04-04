@@ -5,26 +5,24 @@ body {
 	padding: 0;
 }
 
+.option-box {
+	background: #fff;
+	height: 100%;
+	width: 20%;
+	height: 100%;
+	position: absolute;
+	background-color: #f4f4f7; 
+	overflow: auto;
+}
+
 #map {
 	bottom: 0px;
 	height: 100%;
-	left: 375px;
+	left: 20%;
 	position: absolute;
 	right: 0px;
 }
 
-.container {
-	height: 100%;
-	position: relative;
-	
-	margin: 0 auto;
-}
-
-.option-box {
-	background: #fff;
-	height: 100%;
-	width: 360px;
-}
 
 #pano {
     width: 400px;
@@ -33,31 +31,65 @@ body {
 
 li {
 	list-style: none;
-	margin-left: -25px;
+	margin-left: -6%;
+	margin-right: 6%;
 	border-top: 1px solid black;
 	line-height: 35px;
 }
 
 li:hover {
 	background-color: #B2DFDB;
+	cursor: pointer;
 }
 
-.search {
-	width: 350px;
-	margin: 0 auto;
-	margin-left: 10px;
-}
 
 input {
-	width: 340px;
+	width: 90%;
 	height: 30px;
+	border: 3px solid black;
+	font-size: 16px;
+	margin-left: 4%
 }
 
 h1 {
 	margin-left: 10px;
+	color: #efb209;
 }
 
 h2 {
 	margin-left: 10px;
 }
+
+@media screen and (min-width: 800px) and (max-width: 1024px) {
+	.option-box {
+		width: 25%;
+	}
+	li {
+		margin-left: -8%;
+	}
+
+	#map {
+		left: 25%;
+	}
+}
+
+@media screen and (max-width:799px) {
+	.option-box {
+		width: 30%;
+	}
+	li {
+		margin-left: -10%;
+	}
+
+	#map {
+		left: 30%;
+	}
+	#pano {
+    display: none;
+}
+}
+
+
+
+
 

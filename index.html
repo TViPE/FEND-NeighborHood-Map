@@ -9,25 +9,27 @@
 	<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
 </head>
 <body>
-	<div class="container">
-		<div class="option-box">
-			<h1>Long Island Nail Salons</h1>
-			<h2>Where Beauty Begins</h2>
-			<div class="search">
-				<input type="text" name="search" placeholder=" Finding Nail Salons by Keyword" autocomplete="off" data-bind="textInput: search">
-			</div>
-			<ul id="list" data-bind="foreach: venueList">
-				<li class="venueList" data-bind="text: name, visible: show, click: $parent.selectVenue"></li>
-			</ul>
-		</div>
+	
+	<div class="option-box">
+		<h1>Long Island Nail Salons</h1>
+		<h2>Where Beauty Begins</h2>
+
+		<input type="text" name="search" placeholder=" Finding Nail Salons by Keyword" autocomplete="off" data-bind="textInput: search">
+		<ul id="list" data-bind="foreach: venueList">
+			<li class="venueList" data-bind="text: name, visible: show, click: $parent.selectVenue"></li>
+		</ul>
 	</div>
+	
 	<div id="map"></div>
+
+	
 
 	<!-- JS -->
 	<script type='text/javascript' src='js/knockout-3.4.2.js'></script>
 	<script type="text/javascript" src='js/jquery-3.2.0.min.js'></script>
 	<script type="text/javascript" src='js/app.js'></script>
 	<script asyc defer type="text/javascript" 
+		onerror = "gmError()"
 		src="https://maps.googleapis.com/maps/api/js?libraries=places,geometry,drawing&key=AIzaSyBnXUYT2HmjO5jvJAHPk84_uj8dvNUVHXY&v=3&callback=initMap"></script>
 </body>
 </html>
