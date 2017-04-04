@@ -11,10 +11,10 @@
 <body>
 	
 	<div class="option-box">
-		<h1>Long Island Nail Salons</h1>
+		<h1 class="header">Long Island Nail Salons</h1>
 		<h2>Where Beauty Begins</h2>
 
-		<input type="text" name="search" placeholder=" Finding Nail Salons by Keyword" autocomplete="off" data-bind="textInput: search">
+		<input type="text" name="search" placeholder=" Filter" autocomplete="off" data-bind="textInput: search">
 		<ul id="list" data-bind="foreach: venueList">
 			<li class="venueList" data-bind="text: name, visible: show, click: $parent.selectVenue"></li>
 		</ul>
