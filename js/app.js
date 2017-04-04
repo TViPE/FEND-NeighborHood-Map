@@ -74,7 +74,7 @@ var Venue = function(data) {
 	self.lng = data.location.lng;
   self.checkinsCount = data.stats.checkinsCount;
 	self.location = {lat: self.lat, lng: self.lng};
-
+  self.show = ko.observable(true);
   // self.createMarker - this function with create a marker when Google 
   // Maps API is done with map initialize  
   self.createMarker = ko.computed(function () {
