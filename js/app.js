@@ -5,7 +5,7 @@ var streetViewService;
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: 40.9256538, lng: -73.140943},
-        zoom: 11,
+        zoom: 10,
         mapTypeControl: false
     });
     infoWindow = new google.maps.InfoWindow();
@@ -42,6 +42,13 @@ function fourSquareAjaxRequest (venueList) {
     	venues.forEach(function (venue) {
     		venueList.push(new Venue(venue));
     	});
+        var bounds = new google.maps.LatlngBounds();
+        // venueList.forEach(function (venue) {
+        //     bounds.extend(venue.marker.position);
+        // });
+        // google.maps.event.addDomListener(window, 'resize', function() {
+        //     map.fitBounds(bounds);
+        // });
     }).fail(function (jqXHR, textStatus, errorThrown) {
         window.alert("Error");
         console.log("jqXHR: " + jqXHR);
