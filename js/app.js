@@ -1,6 +1,5 @@
 var map;
 var infoWindow = null;
-var markers = [];
 var streetViewService;
 
 function initMap() {
@@ -9,7 +8,6 @@ function initMap() {
         zoom: 11,
         mapTypeControl: false
     });
-
     infoWindow = new google.maps.InfoWindow();
     
     // The purpose of setting vm.google(true) is to make sure that the code
@@ -20,10 +18,9 @@ function initMap() {
 
 // Google Map Error Handler
 function gmError() {
-    var errorMessage = "<h1>There is an error with Google Map at this moment. Please try again later</h1>";
+    var errorMessage = "<h1>There is an error with Google Map at this moment. Please try again later!</h1>";
     $('.option-box').append(errorMessage);
 }
-
 
 function fourSquareAjaxRequest (venueList) {
 	//Foursquare Ajax request

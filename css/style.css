@@ -42,7 +42,6 @@ li:hover {
 	cursor: pointer;
 }
 
-
 input {
 	width: 90%;
 	height: 30px;
@@ -80,14 +79,13 @@ h2 {
 	li {
 		margin-left: -10%;
 	}
-
 	#map {
 		left: 30%;
 	}
 	#pano {
     display: none;
 }
-}
+
 
 
 
