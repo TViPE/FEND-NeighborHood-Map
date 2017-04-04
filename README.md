@@ -7,6 +7,8 @@ The application functionality include:
 - A search function to easily discover these locations
 - A listview to support simple brwosing of all locations.
 
+The application is built with Knockout.js, Google Maps API, and Foursquare API
+
 ## How to get started
 Experience the live demo application at https://tvipe.github.io/FEND-NeighborHood-Map/
 
