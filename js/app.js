@@ -67,16 +67,16 @@ var Venue = function(data) {
               address += data.location.formattedAddress[i] + ", ";
           }
       }
-  }
+  };
   self.formattedAddress = address;
 	self.formattedPhone = data.contact.formattedPhone || "No phone provided";
 	self.lat = data.location.lat;
 	self.lng = data.location.lng;
   self.checkinsCount = data.stats.checkinsCount;
 	self.location = {lat: self.lat, lng: self.lng};
-    // self.show is the boolean value to display/hide places on sidebar
-  self.show = ko.observable(true);
-    
+
+  // self.createMarker - this function with create a marker when Google 
+  // Maps API is done with map initialize  
   self.createMarker = ko.computed(function () {
       if (vm.google()) {
         //marker
@@ -154,8 +154,6 @@ var viewModel = function() {
 
 	// search text filter function
 	self.searchText = ko.computed(function () {
-    //close current infowindow
-    //infoWindow.close();
 		var userInput = self.search().toLowerCase();
 		for(var i = 0; i<self.venueList().length; i++) {
 			if(self.venueList()[i].name.toLowerCase().indexOf(userInput) > -1) {
@@ -166,6 +164,7 @@ var viewModel = function() {
 				// hide places
         self.venueList()[i].show(false);
         self.venueList()[i].marker.setVisible(false);
+        // close current infoWindow
         infoWindow.close();
 			}
 		}
