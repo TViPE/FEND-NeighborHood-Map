@@ -37,11 +37,11 @@ function fourSquareAjaxRequest (venueList) {
       url: fs_url,
       dataType: "jsonp"
   }).done(function (data) {
-  	var venues = data.response.venues;
-  	//console.log(venues);
-  	venues.forEach(function (venue) {
-  		venueList.push(new Venue(venue));
-  	});
+  		var venues = data.response.venues;
+  		//console.log(venues);
+  		venues.forEach(function (venue) {
+  			venueList.push(new Venue(venue));
+  		});
   }).fail(function (jqXHR, textStatus, errorThrown) {
       window.alert("Error");
       console.log("jqXHR: " + jqXHR);
