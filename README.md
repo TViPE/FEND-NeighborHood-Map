@@ -7,15 +7,15 @@ The application functionality includes:
 - A search function to easily discover these locations
 - A listview to support simple browsing of all locations.
 
-![Alt text](https://github.com/TViPE/FEND-NeighborHood-Map/blob/master/img/screenshot_01.png)
+![Alt text](https://github.com/triminhvi/FEND-NeighborHood-Map/blob/master/img/screenshot_01.png)
 
 The application is built with Knockout.js, Google Maps API, and Foursquare API.
 
 ## How to get started
-Experience the live demo application at https://tvipe.github.io/FEND-NeighborHood-Map/
+Experience the live demo application at https://triminhvi.github.io/FEND-NeighborHood-Map/
 
 To explore more about the code:
-1. Visit https://github.com/TViPE/FEND-NeighborHood-Map
+1. Visit https://github.com/triminhvi/FEND-NeighborHood-Map
 2. Clone or download the repository.
 3. Extract zip file.
 4. Feel free to explore the html, cs, js files.
